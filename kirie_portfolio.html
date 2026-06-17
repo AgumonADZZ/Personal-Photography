@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirie — Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Noto+Sans+JP:wght@300;400&family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
+<script>
+/* ============================================================
+   ✏️  KIRIE 的个人配置区 — 只需编辑这里！
+   ============================================================
+   使用说明：
+   - 文字内容：直接修改引号内的文字
+   - 图片：将图片文件放在与 HTML 同一个文件夹，填写文件名即可
+   - 中英文都需要填写（如不需要双语，两个字段填一样的内容）
+   ============================================================ */
+
+const SITE_CONFIG = {
+
+  /* ── 基本信息 ── */
+  photographer: {
+    name_en: "Kirie Lim",          // 英文名字
+    name_zh: "Kirie",              // 中文名字（显示在 About 区）
+    tagline_en: "Photography · Indonesia & Beyond",
+    tagline_zh: "摄影 · 印度尼西亚及更远",
+    location_en: "Jakarta · Indonesia",
+    location_zh: "雅加达 · 印度尼西亚",
+    bio_en: "Based in Jakarta, Indonesia. GTM marketer by day — signed photographer with Visual China Group by vocation. Drawn to the saturated greens of tropical forests, the amber glow trapped in old colonnades, and the unguarded moments of strangers navigating their day.",
+    bio_zh: "常驻雅加达。白天是快消品牌的市场负责人，镜头后是签约于视觉中国的摄影师。偏爱热带森林的饱和绿意、旧建筑廊柱间驻留的琥珀光，以及人群中那些未被防备的瞬间。",
+    affiliation: "Visual China Group",  // 机构标签
+    brand:       "barenbliss BNB",      // 额外标签（不需要可留空 ""）
+    region:      "Southeast Asia",      // 地区标签
+  },
+
+  /* ── Hero 首屏标题 ── */
+  hero: {
+    line1_en: "Light",           // 第一行
+    line2_en: "finds every",     // 第二行（普通文字）
+    line2_italic_en: "",         // 第二行（斜体部分，留空则无）
+    line3_italic_en: "frame.",   // 第三行斜体
+    line3_color: "green",        // 第三行颜色: "coral" | "green" | "gold"
+    series_count: "4",           // 右下角系列数字
+  },
+
+  /* ── 联系方式 ── */
+  contact: {
+    heading_en: "Let's create something beautiful.",
+    heading_zh: "一起创作美丽的事物。",
+    subline_en: "Commercial · Editorial · Licensing · Collaboration",
+    subline_zh: "商业合作 · 编辑授权 · 图库授权 · 联名",
+    email:     "kirie@example.com",        // ← 改成你的邮箱
+    instagram: "https://instagram.com/",   // ← 改成你的 Instagram 链接
+    vcg:       "https://www.vcg.com/",     // ← 改成你的 VCG 链接
+    wechat:    "",  // WeChat ID（留空则隐藏此按钮）
+  },
+
+  /* ── 统计数字（About 区） ── */
+  stats: [
+    { num: "4",   label_en: "Series",          label_zh: "摄影系列",  color: "coral" },
+    { num: "ID",  label_en: "Based in Jakarta", label_zh: "常驻雅加达", color: "green" },
+    { num: "∞",   label_en: "Light to chase",  label_zh: "待追逐的光", color: "gold"  },
+    { num: "ZH/EN", label_en: "Bilingual",      label_zh: "双语创作",   color: "rose"  },
+  ],
+
+};
+
+/* ============================================================
+   📸  照片列表 — 在这里添加 / 修改你的照片
+   ============================================================
+   每张照片的字段说明：
+   - series:  所属系列 → "nature" | "arch" | "people" | "street"
+   - title_en / title_zh: 照片标题（中英文）
+   - location: 拍摄地点
+   - image:   图片文件名（放在与 HTML 同一个文件夹）
+              ⚠️  如果图片还没准备好，填 "" 会显示彩色占位块
+   - color:   占位块颜色（图片加载前或无图时显示），可填 CSS 颜色
+   ============================================================ */
+
+const PHOTOS = [
+
+  /* ── 自然风光 Nature ── */
+  {
+    series:   "nature",
+    title_en: "Morning Mist, Bromo",
+    title_zh: "布罗莫火山的晨雾",
+    location: "East Java, Indonesia",
+    image:    "",        // ← 填入图片文件名，例如 "bromo-mist.jpg"
+    color:    "#7BAAA0", // 占位颜色
+  },
+  {
+    series:   "nature",
+    title_en: "Rice Terraces at Dusk",
+    title_zh: "梯田黄昏",
+    location: "Bali, Indonesia",
+    image:    "",
+    color:    "#8BA87A",
+  },
+  {
+    series:   "nature",
+    title_en: "Cloud Sea, Bromo",
+    title_zh: "布罗莫云海",
+    location: "East Java, Indonesia",
+    image:    "",
+    color:    "#B0B8C8",
+  },
+
+  /* ── 建筑 Architecture ── */
+  {
+    series:   "arch",
+    title_en: "Colonial Corridor",
+    title_zh: "殖民地走廊",
+    location: "Bandung, Indonesia",
+    image:    "",
+    color:    "#C8A870",
+  },
+  {
+    series:   "arch",
+    title_en: "Light Through Lattice",
+    title_zh: "花格透光",
+    location: "Semarang, Indonesia",
+    image:    "",
+    color:    "#D4BC80",
+  },
+  {
+    series:   "arch",
+    title_en: "Stairwell Study",
+    title_zh: "楼梯间的研究",
+    location: "Surabaya, Indonesia",
+    image:    "",
+    color:    "#B89060",
+  },
+
+  /* ── 人文纪实 Documentary ── */
+  {
+    series:   "people",
+    title_en: "Market Hour",
+    title_zh: "市集时光",
+    location: "Yogyakarta, Indonesia",
+    image:    "",
+    color:    "#C09078",
+  },
+  {
+    series:   "people",
+    title_en: "Sunday Offering",
+    title_zh: "周日的供奉",
+    location: "Bali, Indonesia",
+    image:    "",
+    color:    "#C88858",
+  },
+  {
+    series:   "people",
+    title_en: "Fishermen, Before Dawn",
+    title_zh: "天亮前的渔民",
+    location: "North Java Coast",
+    image:    "",
+    color:    "#3A5878",
+  },
+
+  /* ── 街拍 Street ── */
+  {
+    series:   "street",
+    title_en: "Rainy Season Commute",
+    title_zh: "雨季通勤",
+    location: "Jakarta, Indonesia",
+    image:    "",
+    color:    "#3A4878",
+  },
+  {
+    series:   "street",
+    title_en: "Neon Monsoon",
+    title_zh: "霓虹雨季",
+    location: "Jakarta, Indonesia",
+    image:    "",
+    color:    "#2A3860",
+  },
+  {
+    series:   "street",
+    title_en: "Bus Window, Late Night",
+    title_zh: "深夜车窗",
+    location: "Jakarta, Indonesia",
+    image:    "",
+    color:    "#1E2A50",
+  },
+
+];
+
+/* ============================================================
+   🎨  颜色主题 — 可选修改
+   ============================================================ */
+const THEME = {
+  coral:  "#E8503A",   // 主强调色（导航圆点、标题斜体）
+  gold:   "#F2A93B",   // 金色（联系区高亮）
+  green:  "#3A7D5A",   // 绿色（自然系列）
+  rose:   "#D4637A",   // 玫瑰色（人文系列）
+  ink:    "#1C2240",   // 主文字色
+};
+
+</script>
+
+<style>
+/* ============================================================
+   ⚙️  以下是排版样式代码，通常不需要修改
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --coral: #E8503A; --gold: #F2A93B; --green: #3A7D5A;
+  --rose: #D4637A; --ink: #1C2240; --ink2: #5A6080; --ink3: #A8ADBE;
+  --white: #FFFFFF; --sand: #FDF6EE; --border: #E8E4DC;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Noto Sans JP', system-ui, sans-serif;
+  --mono:  'DM Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--white); color: var(--ink); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; height: 62px; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; }
+.nav-logo .dot { color: var(--coral); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink2); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--coral); }
+.nav-lang { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; padding: 5px 14px; border: 1.5px solid var(--ink); background: none; color: var(--ink); cursor: pointer; transition: all 0.2s; }
+.nav-lang:hover { background: var(--ink); color: var(--white); }
+
+/* HERO */
+.hero { min-height: 100vh; padding-top: 62px; display: grid; grid-template-columns: 52% 48%; }
+.hero-image-col { position: relative; overflow: hidden; background: var(--ink); }
+.hero-photo-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #2E5F8A 0%, #4A9B7F 35%, #8FC96D 60%, #F2C46D 85%, #E87A4A 100%); }
+.hero-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,34,64,0.55) 0%, transparent 70%); }
+.hero-shapes { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-location { position: absolute; top: 2rem; left: 1.5rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 6px; }
+.hero-location::before { content: '◎'; }
+.hero-badge { position: absolute; bottom: 2rem; right: 2rem; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); padding: 1rem 1.3rem; text-align: center; }
+.badge-num { font-family: var(--serif); font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; }
+.badge-lbl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.hero-text-col { display: flex; flex-direction: column; justify-content: center; padding: 4rem 3.5rem 4rem 3rem; background: var(--white); }
+.hero-series-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.6rem; }
+.hero-series-tag::before { content: ''; width: 24px; height: 1.5px; background: var(--coral); }
+.hero-title { font-family: var(--serif); font-size: clamp(3rem, 4.5vw, 5.2rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.5rem; }
+.hero-title .coral { font-style: italic; color: var(--coral); }
+.hero-title .green { font-style: italic; color: var(--green); }
+.hero-title .gold  { font-style: italic; color: var(--gold);  }
+.hero-desc { font-size: 0.88rem; color: var(--ink2); line-height: 1.9; max-width: 36ch; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.hero-desc-zh { font-size: 0.82rem; color: var(--ink3); line-height: 2; margin-bottom: 2.2rem; max-width: 36ch; }
+.hero-color-tags { display: flex; gap: 8px; margin-bottom: 2.2rem; flex-wrap: wrap; }
+.hero-color-tag { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; padding: 4px 12px; border-radius: 2px; }
+.tag-nature { background:#E6F4EC; color:var(--green); }
+.tag-arch   { background:#FEF3E2; color:#C47B10; }
+.tag-doc    { background:#FDE8EC; color:var(--rose); }
+.tag-street { background:#E8EAFF; color:#3040AA; }
+.hero-scroll { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: color 0.2s; width: fit-content; }
+.hero-scroll:hover { color: var(--coral); }
+.scroll-arrow { width: 32px; height: 32px; border: 1.5px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; transition: background 0.2s, color 0.2s; }
+.hero-scroll:hover .scroll-arrow { background: var(--coral); border-color: var(--coral); color: white; }
+
+/* SERIES BAR */
+.series-bar { display: flex; border-bottom: 1px solid var(--border); padding: 0 3rem; overflow-x: auto; }
+.series-tab { flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 1rem 1.8rem; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); background: none; border: none; cursor: pointer; border-bottom: 2.5px solid transparent; position: relative; top: 1px; transition: color 0.2s, border-color 0.2s; }
+.series-tab .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.4; transition: opacity 0.2s; }
+.series-tab:hover { color: var(--ink); }
+.series-tab.active { color: var(--ink); border-bottom-color: var(--coral); }
+.series-tab.active .dot { opacity: 1; background: var(--coral); }
+
+/* GALLERY */
+#gallery { padding: 3.5rem 3rem; background: var(--sand); }
+.gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+.gallery-title { font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink); }
+.gallery-title em { font-style: italic; color: var(--coral); }
+.gallery-sub { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--ink3); margin-top: 4px; }
+.gallery-count { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--ink2); background: var(--white); border: 1px solid var(--border); padding: 5px 14px; }
+.photo-grid { columns: 3; column-gap: 12px; }
+@media (max-width: 900px) { .photo-grid { columns: 2; } }
+@media (max-width: 560px) { .photo-grid { columns: 1; } }
+.photo-item { break-inside: avoid; margin-bottom: 12px; position: relative; cursor: pointer; overflow: hidden; display: block; }
+.photo-item .thumb { display: block; width: 100%; }
+.photo-item img.thumb { object-fit: cover; height: 100%; }
+.photo-item svg.thumb { display: block; }
+.photo-item:hover .thumb { transform: scale(1.03); transition: transform 0.4s ease; }
+.photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,34,64,0.82) 0%, rgba(28,34,64,0.1) 55%, transparent 100%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.2rem; }
+.photo-item:hover .photo-overlay { opacity: 1; }
+.p-title-en { font-family: var(--serif); font-size: 1.05rem; font-style: italic; color: #fff; line-height: 1.3; }
+.p-title-zh { font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.p-loc { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; display: flex; align-items: center; gap: 5px; }
+.p-loc::before { content: '◎'; }
+.p-pill { position: absolute; top: 10px; left: 10px; font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; opacity: 0; transition: opacity 0.3s; }
+.photo-item:hover .p-pill { opacity: 1; }
+
+/* ABOUT */
+#about { background: var(--white); padding: 6rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.about-eyebrow::after { content: ''; width: 40px; height: 1px; background: var(--coral); }
+.about-name { font-family: var(--serif); font-size: 3rem; font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem; }
+.about-name em { font-style: italic; color: var(--coral); }
+.about-body { font-size: 0.88rem; color: var(--ink2); line-height: 2; margin-bottom: 0.5rem; max-width: 42ch; }
+.about-body-zh { font-size: 0.82rem; color: var(--ink3); line-height: 2.1; margin-bottom: 1.8rem; max-width: 42ch; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2rem; }
+.about-tag { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; padding: 5px 13px; border: 1px solid var(--border); color: var(--ink2); border-radius: 2px; }
+.about-tag.hl { background: var(--coral); color: white; border-color: var(--coral); }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+.stat-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 700; line-height: 1; }
+.stat-num.coral{color:var(--coral)} .stat-num.green{color:var(--green)} .stat-num.gold{color:var(--gold)} .stat-num.rose{color:var(--rose)}
+.stat-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-top: 4px; }
+.about-collage { position: relative; height: 520px; }
+.collage-card { position: absolute; overflow: hidden; box-shadow: 0 8px 32px rgba(28,34,64,0.12); }
+.collage-card svg, .collage-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.collage-lbl { position: absolute; bottom: 10px; left: 10px; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+
+/* CONTACT */
+#contact { background: var(--ink); padding: 6rem 3rem; text-align: center; position: relative; overflow: hidden; }
+.contact-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1C2240 60%, #2E3A80 100%); }
+.contact-glow { position: absolute; width: 400px; height: 400px; border-radius: 50%; filter: blur(80px); opacity: 0.25; }
+.glow1 { background: var(--coral); top: -100px; right: 10%; }
+.glow2 { background: var(--green); bottom: -80px; left: 15%; }
+.contact-inner { position: relative; z-index: 1; }
+.contact-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.2rem; }
+.contact-title { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.15; color: #fff; margin-bottom: 1rem; }
+.contact-title em { font-style: italic; color: var(--gold); }
+.contact-sub { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3rem; }
+.contact-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.contact-btn { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 26px; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+.btn-primary { background: var(--coral); color: white; }
+.btn-primary:hover { background: #D44030; }
+.btn-ghost { border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+/* FOOTER */
+footer { background: #141828; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(20,24,40,0.96); justify-content: center; align-items: center; flex-direction: column; }
+.lightbox.open { display: flex; }
+.lb-inner { position: relative; max-width: 85vw; }
+.lb-inner img, .lb-inner svg { display: block; max-width: 85vw; max-height: 72vh; border-radius: 2px; object-fit: contain; }
+.lb-close { position: fixed; top: 1.8rem; right: 2rem; font-size: 1.2rem; color: rgba(255,255,255,0.5); cursor: pointer; background: none; border: none; transition: color 0.2s; }
+.lb-close:hover { color: #fff; }
+.lb-meta { margin-top: 1.2rem; display: flex; justify-content: space-between; align-items: flex-end; max-width: 85vw; }
+.lb-title-en { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.9); }
+.lb-title-zh { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 3px; }
+.lb-loc { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.35); text-transform: uppercase; text-align: right; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; } .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; } .hero-image-col { min-height: 45vw; } .hero-text-col { padding: 2.5rem 1.5rem; }
+  .series-bar { padding: 0 1rem; } #gallery { padding: 2.5rem 1rem; }
+  #about { grid-template-columns: 1fr; padding: 3.5rem 1.5rem; gap: 3rem; } .about-collage { height: 300px; }
+  #contact { padding: 4rem 1.5rem; }
+  footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── 以下为网站结构，由 JS 自动填充内容，通常不需要改动 ── -->
+
+<nav>
+  <a class="nav-logo" href="#" id="nav-name"></a>
+  <ul class="nav-links">
+    <li><a href="#gallery" id="nl-work">Work</a></li>
+    <li><a href="#about"   id="nl-about">About</a></li>
+    <li><a href="#contact" id="nl-contact">Contact</a></li>
+  </ul>
+  <button class="nav-lang" onclick="toggleLang()" id="lang-btn">中文</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-image-col">
+    <div class="hero-photo-bg"></div>
+    <div class="hero-photo-overlay"></div>
+    <svg class="hero-shapes" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+      <defs><radialGradient id="sun" cx="70%" cy="30%"><stop offset="0%" stop-color="#FFF8D0" stop-opacity="0.5"/><stop offset="100%" stop-color="#F2A93B" stop-opacity="0"/></radialGradient></defs>
+      <ellipse cx="420" cy="180" rx="200" ry="160" fill="url(#sun)"/>
+      <path d="M0 600 L100 380 L200 480 L300 260 L400 420 L500 300 L600 450 L600 800 L0 800 Z" fill="#1C4A3A" opacity="0.55"/>
+      <path d="M0 650 L80 500 L160 580 L260 400 L360 520 L460 380 L560 470 L600 420 L600 800 L0 800 Z" fill="#163D30" opacity="0.7"/>
+      <rect x="0" y="380" width="600" height="60" fill="#8FC9B0" opacity="0.15"/>
+      <path d="M80 150 Q90 142 100 150" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" fill="none"/>
+      <path d="M110 140 Q122 132 134 140" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" fill="none"/>
+    </svg>
+    <div class="hero-location" id="h-loc"></div>
+    <div class="hero-badge">
+      <div class="badge-num" id="badge-num"></div>
+      <div class="badge-lbl" id="badge-lbl"></div>
+    </div>
+  </div>
+  <div class="hero-text-col">
+    <p class="hero-series-tag" id="h-tag"></p>
+    <h1 class="hero-title" id="h-title"></h1>
+    <p class="hero-desc"    id="h-desc"></p>
+    <p class="hero-desc-zh" id="h-desc-zh" style="display:none"></p>
+    <div class="hero-color-tags">
+      <span class="hero-color-tag tag-nature" id="ct-nature"></span>
+      <span class="hero-color-tag tag-arch"   id="ct-arch"></span>
+      <span class="hero-color-tag tag-doc"    id="ct-doc"></span>
+      <span class="hero-color-tag tag-street" id="ct-street"></span>
+    </div>
+    <a href="#gallery" class="hero-scroll" id="h-cta">
+      <span class="scroll-arrow">↓</span><span id="h-cta-txt"></span>
+    </a>
+  </div>
+</section>
+
+<div class="series-bar" id="series-bar"></div>
+<section id="gallery">
+  <div class="gallery-header">
+    <div>
+      <div class="gallery-title" id="g-title"></div>
+      <div class="gallery-sub"   id="g-sub"></div>
+    </div>
+    <div class="gallery-count" id="g-count"></div>
+  </div>
+  <div class="photo-grid" id="photo-grid"></div>
+</section>
+
+<section id="about">
+  <div>
+    <p class="about-eyebrow" id="ab-eye"></p>
+    <h2 class="about-name" id="ab-name"></h2>
+    <p class="about-body"    id="ab-body"></p>
+    <p class="about-body-zh" id="ab-body-zh" style="display:none"></p>
+    <div class="about-tags"  id="ab-tags"></div>
+    <div class="stat-grid"   id="stat-grid"></div>
+  </div>
+  <div class="about-collage" id="collage"></div>
+</section>
+
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-glow glow1"></div>
+  <div class="contact-glow glow2"></div>
+  <div class="contact-inner">
+    <p class="contact-eyebrow" id="c-eye"></p>
+    <h2 class="contact-title"  id="c-title"></h2>
+    <p class="contact-sub"     id="c-sub"></p>
+    <div class="contact-btns"  id="c-btns"></div>
+  </div>
+</section>
+
+<footer>
+  <span id="f-copy"></span>
+  <span id="f-vcg"></span>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLb(event)">
+  <button class="lb-close" onclick="closeLb()">✕</button>
+  <div class="lb-inner" id="lb-inner">
+    <div class="lb-meta">
+      <div><div class="lb-title-en" id="lb-en"></div><div class="lb-title-zh" id="lb-zh"></div></div>
+      <div class="lb-loc" id="lb-loc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ⚙️  以下为渲染逻辑，不需要修改
+   ============================================================ */
+
+// 应用主题色
+const R = document.documentElement.style;
+R.setProperty('--coral', THEME.coral);
+R.setProperty('--gold',  THEME.gold);
+R.setProperty('--green', THEME.green);
+R.setProperty('--rose',  THEME.rose);
+R.setProperty('--ink',   THEME.ink);
+
+let lang = 'en';
+let currentSeries = 'all';
+const C = SITE_CONFIG;
+
+const SERIES_META = {
+  all:    { en:'<em>Selected</em> Work',        zh:'精选作品',   dot:'#E8503A' },
+  nature: { en:'<em>Nature</em> & Landscape',   zh:'自然风光',   dot:'#3A7D5A' },
+  arch:   { en:'<em>Architecture</em>',          zh:'建筑',       dot:'#F2A93B' },
+  people: { en:'<em>Documentary</em>',           zh:'人文纪实',   dot:'#D4637A' },
+  street: { en:'<em>Street</em>',                zh:'街拍',       dot:'#4A5ADE' },
+};
+const SERIES_LABEL = {
+  nature: { en:'Nature',        zh:'自然风光', pill:'#2E6B4A' },
+  arch:   { en:'Architecture',  zh:'建筑',     pill:'#C47B10' },
+  people: { en:'Documentary',   zh:'人文纪实', pill:'#A83058' },
+  street: { en:'Street',        zh:'街拍',     pill:'#3040AA' },
+};
+
+// PLACEHOLDER SVGs per series
+const PLACEHOLDERS = {
+  nature: (h) => `<defs><linearGradient id="pg" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#87C4E8"/><stop offset="40%" stop-color="#C8E4D8"/><stop offset="100%" stop-color="#4A9B7A"/></linearGradient></defs><rect width="600" height="${h}" fill="url(#pg)"/><ellipse cx="300" cy="90" rx="200" ry="60" fill="#FFF8E8" opacity="0.35"/><path d="M0 ${h*0.73} L80 ${h*0.53} L160 ${h*0.65} L260 ${h*0.43} L360 ${h*0.63} L480 ${h*0.4} L600 ${h*0.57} L600 ${h} L0 ${h}Z" fill="#2A5A3A" opacity="0.6"/><path d="M0 ${h*0.85} L60 ${h*0.72} L160 ${h*0.8} L240 ${h*0.65} L340 ${h*0.78} L440 ${h*0.6} L600 ${h*0.73} L600 ${h} L0 ${h}Z" fill="#1A3D28" opacity="0.82"/>`,
+  arch:   (h) => `<defs><linearGradient id="pg" x1="0" y1="0" x2="0.5" y2="1"><stop offset="0%" stop-color="#F7D99A"/><stop offset="55%" stop-color="#E8943A"/><stop offset="100%" stop-color="#8B4A14"/></linearGradient></defs><rect width="600" height="${h}" fill="url(#pg)"/><ellipse cx="300" cy="40" rx="180" ry="100" fill="#FFF8C0" opacity="0.22"/><path d="M60 ${h} L60 ${h*0.55} Q60 ${h*0.36} 100 ${h*0.36} Q140 ${h*0.36} 140 ${h*0.55} L140 ${h}" fill="#6B3A12" opacity="0.55"/><path d="M200 ${h} L200 ${h*0.45} Q200 ${h*0.26} 250 ${h*0.26} Q300 ${h*0.26} 300 ${h*0.45} L300 ${h}" fill="#5A3010" opacity="0.6"/><rect x="0" y="${h*0.9}" width="600" height="${h*0.1}" fill="#3A1C08" opacity="0.7"/>`,
+  people: (h) => `<defs><linearGradient id="pg" x1="0.2" y1="0" x2="0.8" y2="1"><stop offset="0%" stop-color="#E8C49A"/><stop offset="45%" stop-color="#D4845A"/><stop offset="100%" stop-color="#7A3A22"/></linearGradient></defs><rect width="600" height="${h}" fill="url(#pg)"/><ellipse cx="150" cy="${h*0.22}" rx="90" ry="70" fill="#FFF0C0" opacity="0.3"/><ellipse cx="180" cy="${h*0.67}" rx="28" ry="36" fill="#5A2A12" opacity="0.7"/><rect x="155" y="${h*0.76}" width="50" height="${h*0.24}" rx="8" fill="#4A2210" opacity="0.75"/><ellipse cx="420" cy="${h*0.64}" rx="26" ry="32" fill="#3A1A08" opacity="0.7"/><rect x="398" y="${h*0.73}" width="44" height="${h*0.27}" rx="7" fill="#2E1408" opacity="0.75"/><rect x="0" y="${h*0.88}" width="600" height="${h*0.12}" fill="#2A1008" opacity="0.6"/>`,
+  street: (h) => `<defs><linearGradient id="pg" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#1C2A5A"/><stop offset="50%" stop-color="#2E4A8A"/><stop offset="100%" stop-color="#0A1230"/></linearGradient></defs><rect width="600" height="${h}" fill="url(#pg)"/><rect x="0" y="${h*0.71}" width="600" height="${h*0.29}" fill="#0A1840" opacity="0.8"/><ellipse cx="200" cy="${h*0.77}" rx="60" ry="8" fill="#F2A93B" opacity="0.35"/><ellipse cx="400" cy="${h*0.79}" rx="45" ry="6" fill="#E84858" opacity="0.3"/><circle cx="520" cy="${h*0.25}" r="18" fill="#E84848" opacity="0.6"/><rect x="40" y="${h*0.54}" width="120" height="${h*0.17}" rx="6" fill="#0A1230" opacity="0.9"/><rect x="310" y="${h*0.52}" width="150" height="${h*0.19}" rx="7" fill="#0A1230" opacity="0.85"/>`,
+};
+
+function photoHeight(idx) {
+  const heights = [300,220,260,200,280,240,320,260,180,300,240,220];
+  return heights[idx % heights.length];
+}
+
+function renderNav() {
+  const [first, ...rest] = C.photographer.name_en.split(' ');
+  document.getElementById('nav-name').innerHTML = `${first}<span class="dot">.</span>`;
+}
+
+function renderHero() {
+  const zh = lang === 'zh';
+  document.getElementById('h-tag').textContent  = zh ? C.photographer.tagline_zh : C.photographer.tagline_en;
+  document.getElementById('h-loc').textContent  = zh ? C.photographer.location_zh : C.photographer.location_en;
+  document.getElementById('badge-num').textContent = C.hero.series_count;
+  document.getElementById('badge-lbl').textContent = zh ? '系列' : 'Series';
+  // title
+  const h = C.hero;
+  const c = h.line3_color || 'coral';
+  document.getElementById('h-title').innerHTML =
+    `${h.line1_en}<br>${h.line2_en}${h.line2_italic_en ? ` <span class="${c}">${h.line2_italic_en}</span>` : ''}<br><span class="${c}">${h.line3_italic_en}</span>`;
+  document.getElementById('h-desc').textContent   = C.photographer.bio_en;
+  document.getElementById('h-desc-zh').textContent = C.photographer.bio_zh;
+  document.getElementById('h-desc').style.display   = zh ? 'none' : '';
+  document.getElementById('h-desc-zh').style.display = zh ? '' : 'none';
+  document.getElementById('ct-nature').textContent = zh ? '自然风光' : '自然 Nature';
+  document.getElementById('ct-arch').textContent   = zh ? '建筑' : '建筑 Arch';
+  document.getElementById('ct-doc').textContent    = zh ? '人文纪实' : '人文 Doc';
+  document.getElementById('ct-street').textContent = zh ? '街拍' : '街拍 Street';
+  document.getElementById('h-cta-txt').textContent = zh ? '查看作品' : 'View Work';
+}
+
+function renderSeriesBar() {
+  const bar = document.getElementById('series-bar');
+  bar.innerHTML = Object.entries(SERIES_META).map(([key, s]) => `
+    <button class="series-tab${key===currentSeries?' active':''}" onclick="filterSeries('${key}',this)">
+      <span class="dot" style="background:${key==='all'?'var(--coral)':s.dot}"></span>
+      ${lang==='zh' ? s.zh : (key==='all'?'All Work':s.zh)}
+    </button>`).join('');
+}
+
+function renderGallery() {
+  const zh = lang === 'zh';
+  const s = SERIES_META[currentSeries];
+  document.getElementById('g-title').innerHTML = s.en;
+  document.getElementById('g-sub').textContent = s.zh;
+  const filtered = currentSeries === 'all' ? PHOTOS : PHOTOS.filter(p => p.series === currentSeries);
+  document.getElementById('g-count').textContent = filtered.length + (zh ? ' 张作品' : ' photographs');
+  const grid = document.getElementById('photo-grid');
+  grid.innerHTML = filtered.map((p, idx) => {
+    const h = photoHeight(idx);
+    const sl = SERIES_LABEL[p.series];
+    const pillText = zh ? sl.zh : sl.en;
+    let thumbHTML;
+    if (p.image) {
+      thumbHTML = `<img class="thumb" src="${p.image}" alt="${p.title_en}" style="height:${h}px;">`;
+    } else {
+      thumbHTML = `<svg class="thumb" viewBox="0 0 600 ${h}" preserveAspectRatio="xMidYMid slice" style="background:${p.color}">${PLACEHOLDERS[p.series](h)}</svg>`;
+    }
+    return `<div class="photo-item" onclick="openLb(${PHOTOS.indexOf(p)})">
+      ${thumbHTML}
+      <span class="p-pill" style="background:${sl.pill};color:#fff">${pillText}</span>
+      <div class="photo-overlay">
+        <div class="p-title-en">${p.title_en}</div>
+        <div class="p-title-zh">${p.title_zh}</div>
+        <div class="p-loc">${p.location}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderAbout() {
+  const zh = lang === 'zh';
+  document.getElementById('ab-eye').textContent = zh ? '关于摄影师' : 'About the photographer';
+  const [fn, ...ln] = C.photographer.name_en.split(' ');
+  document.getElementById('ab-name').innerHTML = `${fn} <em>${ln.join(' ')}</em>`;
+  document.getElementById('ab-body').textContent    = C.photographer.bio_en;
+  document.getElementById('ab-body-zh').textContent = C.photographer.bio_zh;
+  document.getElementById('ab-body').style.display    = zh ? 'none' : '';
+  document.getElementById('ab-body-zh').style.display = zh ? '' : 'none';
+  // tags
+  const tags = [
+    {text: C.photographer.affiliation, hl: true},
+    {text: C.photographer.location_en.split(' · ')[1] || C.photographer.location_en},
+    C.photographer.brand ? {text: C.photographer.brand} : null,
+    {text: C.photographer.region},
+  ].filter(Boolean);
+  document.getElementById('ab-tags').innerHTML = tags.map(t =>
+    `<span class="about-tag${t.hl?' hl':''}">${t.text}</span>`).join('');
+  // stats
+  document.getElementById('stat-grid').innerHTML = C.stats.map(s => `
+    <div>
+      <div class="stat-num ${s.color}">${s.num}</div>
+      <div class="stat-label">${zh ? s.label_zh : s.label_en}</div>
+    </div>`).join('');
+  // collage (picks first nature, arch, street photo for the 3 cards)
+  const picks = { nature: PHOTOS.find(p=>p.series==='nature'), arch: PHOTOS.find(p=>p.series==='arch'), street: PHOTOS.find(p=>p.series==='street') };
+  const card = (p, series, style, label) => {
+    const sl = SERIES_LABEL[series];
+    if (!p) return '';
+    const inner = p.image
+      ? `<img src="${p.image}" alt="${p.title_en}">`
+      : `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" style="background:${p.color}">${PLACEHOLDERS[series](300)}</svg>`;
+    return `<div class="collage-card" style="${style}">${inner}<span class="collage-lbl">${label}</span></div>`;
+  };
+  document.getElementById('collage').innerHTML =
+    card(picks.nature, 'nature', 'top:0;left:0;right:5rem;bottom:5rem;', zh?'自然 · Nature':'自然 · Nature') +
+    card(picks.arch,   'arch',   'top:3rem;right:0;width:52%;height:44%;box-shadow:0 12px 40px rgba(28,34,64,0.18);', zh?'建筑 · Architecture':'建筑 · Arch') +
+    card(picks.street, 'street', 'bottom:0;right:1rem;width:45%;height:38%;box-shadow:0 12px 40px rgba(28,34,64,0.2);', zh?'街拍 · Street':'街拍 · Street');
+}
+
+function renderContact() {
+  const zh = lang === 'zh';
+  document.getElementById('c-eye').textContent = zh ? '联系合作' : 'Get in touch';
+  const [h1, h2] = (zh ? C.contact.heading_zh : C.contact.heading_en).split(/(?<=\S)\s+(?=\S{3,}$)/);
+  document.getElementById('c-title').innerHTML = h1 + (h2 ? `<br><em>${h2}</em>` : '');
+  document.getElementById('c-sub').textContent = zh ? C.contact.subline_zh : C.contact.subline_en;
+  const btns = [
+    { href: `mailto:${C.contact.email}`, label_en: 'Email Me',     label_zh: '发送邮件', primary: true },
+    { href: C.contact.instagram,         label_en: 'Instagram',    label_zh: 'Instagram' },
+    { href: C.contact.vcg,               label_en: 'VCG Portfolio',label_zh: 'VCG 视觉中国' },
+    C.contact.wechat ? { href: '#',      label_en: 'WeChat',       label_zh: 'WeChat' } : null,
+  ].filter(Boolean);
+  document.getElementById('c-btns').innerHTML = btns.map(b =>
+    `<a href="${b.href}" class="contact-btn ${b.primary?'btn-primary':'btn-ghost'}">${zh ? b.label_zh : b.label_en}</a>`
+  ).join('');
+}
+
+function renderFooter() {
+  const year = new Date().getFullYear();
+  document.getElementById('f-copy').textContent = `© ${year} ${C.photographer.name_en} · All rights reserved`;
+  document.getElementById('f-vcg').textContent  = `Images licensed via ${C.photographer.affiliation} · 视觉中国`;
+}
+
+function filterSeries(series, btn) {
+  currentSeries = series;
+  renderSeriesBar();
+  renderGallery();
+}
+
+function openLb(idx) {
+  const p = PHOTOS[idx];
+  if (!p) return;
+  const h = photoHeight(idx);
+  const inner = document.getElementById('lb-inner');
+  const existing = inner.querySelector('img, svg');
+  if (existing) existing.remove();
+  let el;
+  if (p.image) {
+    el = document.createElement('img');
+    el.src = p.image; el.alt = p.title_en;
+  } else {
+    el = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    el.setAttribute('viewBox',`0 0 600 ${h}`);
+    el.setAttribute('preserveAspectRatio','xMidYMid slice');
+    el.style.background = p.color;
+    el.innerHTML = PLACEHOLDERS[p.series](h);
+  }
+  inner.insertBefore(el, inner.firstChild);
+  document.getElementById('lb-en').textContent  = p.title_en;
+  document.getElementById('lb-zh').textContent  = p.title_zh;
+  document.getElementById('lb-loc').textContent = p.location;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb(e) {
+  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lb-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+});
+
+function toggleLang() {
+  lang = lang === 'en' ? 'zh' : 'en';
+  document.getElementById('lang-btn').textContent = lang === 'zh' ? 'EN' : '中文';
+  renderAll();
+}
+
+function renderAll() {
+  renderNav();
+  renderHero();
+  renderSeriesBar();
+  renderGallery();
+  renderAbout();
+  renderContact();
+  renderFooter();
+}
+
+renderAll();
+</script>
+</body>
+</html>
